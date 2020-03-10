@@ -6,13 +6,10 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'airbnb',
-    'prettier',
-    'prettier/react',
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
-    __DEV__: 'readonly',
   },
   parserOptions: {
     ecmaFeatures: {
@@ -23,7 +20,6 @@ module.exports = {
   },
   plugins: [
     'react',
-    'prettier',
     'react-hooks',
     'eslint-plugin-import-helpers',
   ],
