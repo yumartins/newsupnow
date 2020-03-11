@@ -14,6 +14,7 @@ const aligns = {
 
 const Title = styled.Text`
   text-align: left;
+  font-family: 'SegoeUI-Bold';
 
   ${(props) => props.type === appearances.primary && `
     color: #000;
