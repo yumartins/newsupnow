@@ -2,10 +2,11 @@
 
 export const color = {
   black: '#000000',
-  dark: '#505256',
-  light: '#A7AAB0',
-  disabled: '#B0B7C3',
+  dark: '#07153B',
+  gray: '#C3C9DF',
+  light: '#ECEEFA',
   white: '#FFFFFF',
+  primary: '#2D53DC',
 };
 
 export const spacing = {
@@ -33,24 +34,23 @@ export const boxShadow = {
 
 export const typography = {
   type: {
-    primary: '"Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    primary: '"SegoeUI", "Helvetica Neue", Helvetica, Arial, sans-serif',
     code: '"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace',
   },
-  weight: {
-    regular: '400',
-    bold: '700',
-    extrabold: '800',
+  font: {
+    regular: 'SegoeUI',
+    semiBold: 'SegoeUI-SemiBold',
+    bold: 'SegoeUI-Bold',
   },
   size: {
-    s1: '12',
-    s2: '14',
-    s3: '16',
-    m1: '20',
-    m2: '24',
-    m3: '28',
-    l1: '32',
-    l2: '40',
-    l3: '48',
-    code: '90',
+    s1: '12px',
+    s2: '14px',
+    s3: '16px',
+    m1: '20px',
+    m2: '24px',
+    m3: '28px',
+    l1: '32px',
+    l2: '40px',
+    l3: '48px',
   },
 };

@@ -5,7 +5,7 @@ import Title from '../components/Title';
 
 const Main = () => (
   <View>
-    <Title type="primary">Main</Title>
+    <Title size="lg">Main</Title>
   </View>
 );
 
