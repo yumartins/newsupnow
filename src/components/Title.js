@@ -22,26 +22,25 @@ const aligns = {
 };
 
 const Title = styled.Text`
-  text-align: left;
   font-family: 'SegoeUI-Bold';
   color: ${color.primary};
 
   /**
    * Sizes
    */
-  ${(props) => props.size === sizes.primary && `
+  ${(props) => props.size === sizes.lg && `
     font-size: ${typography.size.l2};
     letter-spacing: -0.12px;
     line-height: 42px;
   `}
 
-  ${(props) => props.size === sizes.secondary && `
+  ${(props) => props.size === sizes.md && `
     font-size: ${typography.size.l1};
     letter-spacing: -0.12px;
     line-height: 36px;
   `}
 
-  ${(props) => props.size === sizes.tertiary && `
+  ${(props) => props.size === sizes.xs && `
     font-size: ${typography.size.m2};
     font-family: ${typography.font.semiBold};
     letter-spacing: -0.24px;

@@ -5,7 +5,13 @@ import Title from '../components/Title';
 
 const Main = () => (
   <View>
-    <Title size="lg">Main</Title>
+    <Title
+      size="md"
+      appearance="dark"
+      align="left"
+    >
+      {'Welcome to \nNews upNow'}
+    </Title>
   </View>
 );
 
