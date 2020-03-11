@@ -1,6 +1,11 @@
+import React from 'react';
+
+import { string } from 'prop-types';
 import styled from 'styled-components';
 
 import { color, typography } from '../styles/styles';
+
+const Title = ({ text, ...rest }) => <StyledTitle {...rest}>{text}</StyledTitle>;
 
 const sizes = {
   lg: 'lg',
@@ -21,7 +26,7 @@ const aligns = {
   right: 'right',
 };
 
-const Title = styled.Text`
+const StyledTitle = styled.Text`
   font-family: 'SegoeUI-Bold';
   color: ${color.primary};
 
@@ -81,5 +86,18 @@ const Title = styled.Text`
     color: ${color.light};
   `}
 `;
+
+Title.propTypes = {
+  text: string.isRequired,
+  size: string,
+  appearance: string,
+  align: string,
+};
+
+Title.defaultProps = {
+  size: 'lg',
+  appearance: 'dark',
+  align: 'left',
+};
 
 export default Title;

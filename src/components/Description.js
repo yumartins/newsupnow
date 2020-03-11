@@ -1,6 +1,13 @@
+import React from 'react';
+
+import { string } from 'prop-types';
 import styled from 'styled-components';
 
 import { color, typography } from '../styles/styles';
+
+const Description = ({ text, ...rest }) => (
+  <StyledDescription {...rest}>{text}</StyledDescription>
+);
 
 const sizes = {
   lg: 'lg',
@@ -20,7 +27,7 @@ const aligns = {
   right: 'right',
 };
 
-const Description = styled.Text`
+const StyledDescription = styled.Text`
   font-family: 'SegoeUI';
   line-height: 20px;
   color: ${color.gray};
@@ -71,5 +78,18 @@ const Description = styled.Text`
     font-weight: ${typography.font.bold};
   `}
 `;
+
+Description.propTypes = {
+  text: string.isRequired,
+  size: string,
+  weight: string,
+  align: string,
+};
+
+Description.defaultProps = {
+  size: 'lg',
+  weight: 'regular',
+  align: 'left',
+};
 
 export default Description;

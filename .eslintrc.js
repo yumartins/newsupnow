@@ -24,6 +24,7 @@ module.exports = {
     'eslint-plugin-import-helpers',
   ],
   rules: {
+    'react/jsx-props-no-spreading': ['off'],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'import/no-extraneous-dependencies': 0,
     camelcase: ['error', {

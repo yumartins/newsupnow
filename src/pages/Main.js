@@ -1,17 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
 
+import Description from '../components/Description';
 import Title from '../components/Title';
 
 const Main = () => (
   <View>
-    <Title
-      size="md"
-      appearance="dark"
-      align="left"
-    >
-      {'Welcome to \nNews upNow'}
-    </Title>
+    <Title text={'Welcome to \nNews upNow'} />
+    <Description text="Here you can follow all the news" />
   </View>
 );
 
