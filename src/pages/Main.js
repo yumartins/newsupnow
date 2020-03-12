@@ -1,14 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+import Container from '../components/Container';
 import Description from '../components/Description';
 import Title from '../components/Title';
 
 const Main = () => (
-  <View>
+  <Container>
     <Title text={'Welcome to \nNews upNow'} />
     <Description text="Here you can follow all the news" />
-  </View>
+  </Container>
 );
 
 export default Main;
