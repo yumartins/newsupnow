@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import IconSearch from '../../assets/icon-search.svg';
 import Container from '../components/Container';
@@ -31,8 +31,6 @@ const Main = () => {
         onValue={setSearch}
         value={search}
       />
-
-      <IconSearch width={120} height={120} />
     </Container>
   );
 };

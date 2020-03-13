@@ -3,28 +3,44 @@ import React from 'react';
 import { string, func } from 'prop-types';
 import styled from 'styled-components';
 
+import IconSearch from '../../assets/icon-search.svg';
 import {
   spacing, color, typography, borderRadius,
 } from '../styles/styles';
 
+const {
+  xs,
+  sm,
+  xl,
+} = spacing;
+
 const SearchInput = ({
-  icon,
   value,
   onValue,
   ...rest
 }) => (
-  <Search
-    {...rest}
-    clearButtonMode="while-editing"
-    placeholderTextColor={color.gray}
-    inlineImageLeft={icon}
-    onChangeText={onValue}
-    value={value}
-  />
+  <Search>
+    <Icon width={18} height={18} />
+    <Input
+      {...rest}
+      clearButtonMode="while-editing"
+      placeholderTextColor={color.gray}
+      onChangeText={onValue}
+      value={value}
+    />
+  </Search>
 );
 
-const Search = styled.TextInput`
-  padding: ${spacing.sm}px;
+const Search = styled.View`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+`;
+
+const Input = styled.TextInput`
+  width: 100%;
+  padding: ${sm}px ${sm}px ${sm}px ${xl + xs}px;
   font-size: ${typography.size.s2};
   background-color: ${color.white};
   border-radius: ${borderRadius.md}px;
@@ -33,14 +49,18 @@ const Search = styled.TextInput`
   shadow-opacity: 0.1;
 `;
 
+const Icon = styled(IconSearch)`
+  position: absolute;
+  z-index: 2;
+  left: ${sm}px;
+`;
+
 SearchInput.propTypes = {
-  icon: string,
   value: string.isRequired,
   onValue: func,
 };
 
 SearchInput.defaultProps = {
-  icon: '',
   onValue: () => {},
 };
 
