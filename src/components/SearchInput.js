@@ -8,6 +8,7 @@ import {
 } from '../styles/styles';
 
 const SearchInput = ({
+  icon,
   value,
   onValue,
   ...rest
@@ -16,6 +17,7 @@ const SearchInput = ({
     {...rest}
     clearButtonMode="while-editing"
     placeholderTextColor={color.gray}
+    inlineImageLeft={icon}
     onChangeText={onValue}
     value={value}
   />
@@ -32,11 +34,13 @@ const Search = styled.TextInput`
 `;
 
 SearchInput.propTypes = {
+  icon: string,
   value: string.isRequired,
   onValue: func,
 };
 
 SearchInput.defaultProps = {
+  icon: '',
   onValue: () => {},
 };
 

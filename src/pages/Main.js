@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, TextInput } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+import IconSearch from '../../assets/icon-search.svg';
 import Container from '../components/Container';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
@@ -27,10 +28,11 @@ const Main = () => {
 
       <SearchInput
         placeholder="What are you looking for?"
-        clearButtonMode="while-editing"
         onValue={setSearch}
         value={search}
       />
+
+      <IconSearch width={120} height={120} />
     </Container>
   );
 };

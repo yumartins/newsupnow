@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Blank Template",
+    "name": "News UpNow",
     "slug": "newsupnow",
     "privacy": "public",
     "sdkVersion": "36.0.0",
@@ -16,6 +16,10 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "packagerOpts": {
+      "config": "metro.config.js",
+      "sourceExts": ["js", "jsx", "svg", "ts", "tsx"]
     },
     "updates": {
       "fallbackToCacheTimeout": 0
