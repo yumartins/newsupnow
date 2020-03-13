@@ -14,6 +14,11 @@ const {
   xl,
 } = spacing;
 
+/**
+ *
+ * @todo Create clearButton styled
+ */
+
 const SearchInput = ({
   value,
   onValue,
@@ -42,6 +47,7 @@ const Input = styled.TextInput`
   width: 100%;
   padding: ${sm}px ${sm}px ${sm}px ${xl + xs}px;
   font-size: ${typography.size.s2};
+  color: ${color.gray};
   background-color: ${color.white};
   border-radius: ${borderRadius.md}px;
   line-height: 20px;
