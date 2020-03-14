@@ -1,13 +1,18 @@
 import React from 'react';
 
+import { string, number } from 'prop-types';
 import styled from 'styled-components';
 
-import { color, borderRadius, spacing } from '../../styles/styles';
+import IconClock from '../../../assets/icon-clock.svg';
+import IconPlay from '../../../assets/icon-play.svg';
+import {
+  color, borderRadius, spacing, typography,
+} from '../../styles/styles';
 import Description from '../Description';
 import Title from '../Title';
 
 const Spotlight = ({
-  date,
+  hour,
   title,
   image,
   description,
@@ -17,6 +22,10 @@ const Spotlight = ({
       <Background source={image} />
       <Overlay />
     </Image>
+    <BoxHours>
+      <IconClock />
+      <Hour>{hour}</Hour>
+    </BoxHours>
     <Container>
       <Title
         text={title}
@@ -29,8 +38,18 @@ const Spotlight = ({
         size="xs"
       />
     </Container>
+    <Button>
+      <IconPlay />
+    </Button>
   </Card>
 );
+
+const {
+  xs,
+  sm,
+  md,
+  xl,
+} = spacing;
 
 const Card = styled.View`
   position: relative;
@@ -64,13 +83,60 @@ const Background = styled.Image`
 
 const Container = styled.View`
   z-index: 3;
-  padding: ${spacing.sm}px;
+  padding: ${sm}px;
   margin-top: auto;
   max-width: 212px;
 `;
 
 const Text = styled(Description)`
-  margin-top: ${spacing.xs - 4}px;
+  margin-top: ${xs - 4}px;
 `;
+
+const Button = styled.View`
+  background-color: ${color.primary};
+  width: ${xl + xs}px;
+  height: ${xl + xs}px;
+  border-radius: ${borderRadius.md}px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 10px ${color.primary};
+  shadow-opacity: 0.15;
+  position: absolute;
+  bottom: -${md}px;
+  right: ${md}px;
+`;
+
+const BoxHours = styled.View`
+  background-color: ${color.primary};
+  border-radius: ${borderRadius.sm}px;
+  padding: ${xs}px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: auto;
+  position: relative;
+  top: ${md}px;
+  right: ${md}px;
+`;
+
+const Hour = styled.Text`
+  font-size: ${typography.size.s1};
+  font-family: ${typography.font.semiBold};
+  color: ${color.white};
+  margin-left: ${xs}px;
+`;
+
+Spotlight.propTypes = {
+  hour: string,
+  title: string.isRequired,
+  image: number.isRequired,
+  description: string,
+};
+
+Spotlight.defaultProps = {
+  hour: '',
+  description: '',
+};
 
 export default Spotlight;

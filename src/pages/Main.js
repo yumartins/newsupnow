@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, TouchableHighlight } from 'react-native';
 
-import { func, objectOf } from 'prop-types';
+import { func, object, oneOfType } from 'prop-types';
 
 import ImagePost from '../../assets/images/post.jpg';
 import CardSpotlight from '../components/Cards/Spotlight';
@@ -71,6 +71,7 @@ const Main = ({ navigation }) => {
             image={ImagePost}
             title="Congratulations New York"
             description="Lorem ipsum its door me goold head look for tree"
+            hour="5 hours ago"
           />
         </TouchableHighlight>
       </View>
@@ -79,7 +80,9 @@ const Main = ({ navigation }) => {
 };
 
 Main.propTypes = {
-  navigation: objectOf(func).isRequired,
+  navigation: oneOfType([
+    object, func,
+  ]).isRequired,
 };
 
 export default Main;
