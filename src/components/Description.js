@@ -49,7 +49,7 @@ const StyledDescription = styled.Text`
 
   ${(props) => props.size === sizes.xs && `
     font-size: ${typography.size.s1};
-    line-height: 16px;
+    line-height: 20px;
   `}
 
   /**

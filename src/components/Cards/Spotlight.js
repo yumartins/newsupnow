@@ -6,7 +6,10 @@ import styled from 'styled-components';
 import IconClock from '../../../assets/icon-clock.svg';
 import IconPlay from '../../../assets/icon-play.svg';
 import {
-  color, borderRadius, spacing, typography,
+  color,
+  spacing,
+  typography,
+  borderRadius,
 } from '../../styles/styles';
 import Description from '../Description';
 import Title from '../Title';
@@ -51,6 +54,10 @@ const {
   xl,
 } = spacing;
 
+/**
+ * Styled Component
+ */
+
 const Card = styled.View`
   position: relative;
   width: 100%;
@@ -83,9 +90,9 @@ const Background = styled.Image`
 
 const Container = styled.View`
   z-index: 3;
-  padding: ${sm}px;
+  padding: ${md}px;
   margin-top: auto;
-  max-width: 212px;
+  max-width: 224px;
 `;
 
 const Text = styled(Description)`
@@ -126,6 +133,10 @@ const Hour = styled.Text`
   color: ${color.white};
   margin-left: ${xs}px;
 `;
+
+/**
+ * Set properties
+ */
 
 Spotlight.propTypes = {
   hour: string,

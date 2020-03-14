@@ -49,7 +49,7 @@ const StyledTitle = styled.Text`
     font-size: ${typography.size.m2};
     font-family: ${typography.font.semiBold};
     letter-spacing: -0.24px;
-    line-height: 24px;
+    line-height: 28px;
   `}
 
   /**
