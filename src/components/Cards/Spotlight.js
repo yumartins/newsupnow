@@ -49,7 +49,6 @@ const Spotlight = ({
 
 const {
   xs,
-  sm,
   md,
   xl,
 } = spacing;

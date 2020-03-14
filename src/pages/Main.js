@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import {
-  StyleSheet, View, TouchableHighlight, ScrollView,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableHighlight,
 } from 'react-native';
 
 import { func, object, oneOfType } from 'prop-types';
 
 import ImagePost from '../../assets/images/post.jpg';
+import CardPost from '../components/Cards/Post';
 import CardSpotlight from '../components/Cards/Spotlight';
 import Container from '../components/Container';
 import Description from '../components/Description';
@@ -90,7 +94,7 @@ const Main = ({ navigation }) => {
             style={cardSpotlight}
             onPress={() => { navigation.navigate('Post'); }}
           >
-            <CardSpotlight
+            <CardPost
               image={ImagePost}
               title="Congratulations New York"
               description="Lorem ipsum its door me goold head look for tree"
