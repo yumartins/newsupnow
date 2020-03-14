@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, TouchableHighlight } from 'react-native';
+import {
+  StyleSheet, View, TouchableHighlight, ScrollView,
+} from 'react-native';
 
 import { func, object, oneOfType } from 'prop-types';
 
@@ -56,25 +58,47 @@ const Main = ({ navigation }) => {
         value={search}
       />
 
-      <View style={spotlight}>
-        <Title
-          text="Spotlight"
-          size="xs"
-          appearance="primary"
-        />
-
-        <TouchableHighlight
-          style={cardSpotlight}
-          onPress={() => { navigation.navigate('Post'); }}
-        >
-          <CardSpotlight
-            image={ImagePost}
-            title="Congratulations New York"
-            description="Lorem ipsum its door me goold head look for tree"
-            hour="5 hours ago"
+      <ScrollView style={spotlight}>
+        <View>
+          <Title
+            text="Spotlight"
+            size="xs"
+            appearance="primary"
           />
-        </TouchableHighlight>
-      </View>
+
+          <TouchableHighlight
+            style={cardSpotlight}
+            onPress={() => { navigation.navigate('Post'); }}
+          >
+            <CardSpotlight
+              image={ImagePost}
+              title="Congratulations New York"
+              description="Lorem ipsum its door me goold head look for tree"
+              hour="5 hours ago"
+            />
+          </TouchableHighlight>
+        </View>
+
+        <View style={spotlight}>
+          <Title
+            text="Latest Video"
+            size="xs"
+            appearance="primary"
+          />
+
+          <TouchableHighlight
+            style={cardSpotlight}
+            onPress={() => { navigation.navigate('Post'); }}
+          >
+            <CardSpotlight
+              image={ImagePost}
+              title="Congratulations New York"
+              description="Lorem ipsum its door me goold head look for tree"
+              hour="5 hours ago"
+            />
+          </TouchableHighlight>
+        </View>
+      </ScrollView>
     </Container>
   );
 };
