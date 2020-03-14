@@ -83,7 +83,7 @@ const StyledTitle = styled.Text`
   `}
 
   ${(props) => props.appearance === appearances.white && `
-    color: ${color.light};
+    color: ${color.white};
   `}
 `;
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import ImagePost from '../../assets/images/post.jpg';
+import CardSpotlight from '../components/Cards/Spotlight';
 import Container from '../components/Container';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
@@ -36,7 +38,10 @@ const Main = () => {
   return (
     <Container>
       <Title text={'Welcome to \nNews upNow'} />
-      <Description style={description} text="Here you can follow all the news" />
+      <Description
+        style={description}
+        text="Here you can follow all the news"
+      />
 
       <SearchInput
         placeholder="What are you looking for?"
@@ -49,6 +54,12 @@ const Main = () => {
           text="Spotlight"
           size="xs"
           appearance="primary"
+        />
+
+        <CardSpotlight
+          image={ImagePost}
+          title="Congratulations New York"
+          description="Lorem ipsum its door me goold head look for tree"
         />
       </View>
     </Container>

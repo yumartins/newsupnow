@@ -9,6 +9,11 @@ const Description = ({ text, ...rest }) => (
   <StyledDescription {...rest}>{text}</StyledDescription>
 );
 
+const appearances = {
+  gray: 'gray',
+  white: 'white',
+};
+
 const sizes = {
   lg: 'lg',
   md: 'md',
@@ -30,7 +35,6 @@ const aligns = {
 const StyledDescription = styled.Text`
   font-family: 'SegoeUI';
   line-height: 20px;
-  color: ${color.gray};
 
   /**
    * Sizes
@@ -46,6 +50,17 @@ const StyledDescription = styled.Text`
   ${(props) => props.size === sizes.xs && `
     font-size: ${typography.size.s1};
     line-height: 16px;
+  `}
+
+  /**
+   * Appearances
+   */
+  ${(props) => props.appearance === appearances.gray && `
+    color: ${color.gray};
+  `}
+
+  ${(props) => props.appearance === appearances.white && `
+    color: ${color.white};
   `}
 
   /**
@@ -84,12 +99,14 @@ Description.propTypes = {
   size: string,
   weight: string,
   align: string,
+  appearance: string,
 };
 
 Description.defaultProps = {
   size: 'lg',
   weight: 'regular',
   align: 'left',
+  appearance: 'gray',
 };
 
 export default Description;
