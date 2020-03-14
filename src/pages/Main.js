@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableHighlight } from 'react-native';
+
+import { func, objectOf } from 'prop-types';
 
 import ImagePost from '../../assets/images/post.jpg';
 import CardSpotlight from '../components/Cards/Spotlight';
@@ -25,14 +27,19 @@ const styles = StyleSheet.create({
   spotlight: {
     marginTop: xl + sm,
   },
+
+  cardSpotlight: {
+    marginTop: sm,
+  },
 });
 
 const {
   spotlight,
   description,
+  cardSpotlight,
 } = styles;
 
-const Main = () => {
+const Main = ({ navigation }) => {
   const [search, setSearch] = useState('');
 
   return (
@@ -56,14 +63,23 @@ const Main = () => {
           appearance="primary"
         />
 
-        <CardSpotlight
-          image={ImagePost}
-          title="Congratulations New York"
-          description="Lorem ipsum its door me goold head look for tree"
-        />
+        <TouchableHighlight
+          style={cardSpotlight}
+          onPress={() => { navigation.navigate('Post'); }}
+        >
+          <CardSpotlight
+            image={ImagePost}
+            title="Congratulations New York"
+            description="Lorem ipsum its door me goold head look for tree"
+          />
+        </TouchableHighlight>
       </View>
     </Container>
   );
+};
+
+Main.propTypes = {
+  navigation: objectOf(func).isRequired,
 };
 
 export default Main;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from 'styled-components';
 
-import { color, borderRadius } from '../../styles/styles';
+import { color, borderRadius, spacing } from '../../styles/styles';
 import Description from '../Description';
 import Title from '../Title';
 
@@ -17,28 +17,31 @@ const Spotlight = ({
       <Background source={image} />
       <Overlay />
     </Image>
-    <BigTitle
-      text={title}
-      size="xs"
-      appearance="white"
-    />
-    <Text
-      text={description}
-      appearance="white"
-      size="xs"
-    />
+    <Container>
+      <Title
+        text={title}
+        size="xs"
+        appearance="white"
+      />
+      <Text
+        text={description}
+        appearance="white"
+        size="xs"
+      />
+    </Container>
   </Card>
 );
 
 const Card = styled.View`
   position: relative;
   width: 100%;
+  height: 300px;
 `;
 
 const Image = styled.View`
   position: absolute;
   width: 100%;
-  height: 300px;
+  height: 100%;
 `;
 
 const Overlay = styled.View`
@@ -59,8 +62,15 @@ const Background = styled.Image`
   border-radius: ${borderRadius.md}px;
 `;
 
-const BigTitle = styled(Title)``;
+const Container = styled.View`
+  z-index: 3;
+  padding: ${spacing.sm}px;
+  margin-top: auto;
+  max-width: 212px;
+`;
 
-const Text = styled(Description)``;
+const Text = styled(Description)`
+  margin-top: ${spacing.xs - 4}px;
+`;
 
 export default Spotlight;
