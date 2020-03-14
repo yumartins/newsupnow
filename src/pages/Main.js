@@ -45,21 +45,21 @@ const Main = ({ navigation }) => {
   const [search, setSearch] = useState('');
 
   return (
-    <Container>
-      <Title text={'Welcome to \nNews upNow'} />
-      <Description
-        style={description}
-        text="Here you can follow all the news"
-      />
+    <ScrollView>
+      <Container>
+        <Title text={'Welcome to \nNews upNow'} />
+        <Description
+          style={description}
+          text="Here you can follow all the news"
+        />
 
-      <SearchInput
-        placeholder="What are you looking for?"
-        onValue={setSearch}
-        value={search}
-      />
+        <SearchInput
+          placeholder="What are you looking for?"
+          onValue={setSearch}
+          value={search}
+        />
 
-      <ScrollView style={spotlight}>
-        <View>
+        <View style={spotlight}>
           <Title
             text="Spotlight"
             size="xs"
@@ -98,8 +98,8 @@ const Main = ({ navigation }) => {
             />
           </TouchableHighlight>
         </View>
-      </ScrollView>
-    </Container>
+      </Container>
+    </ScrollView>
   );
 };
 
