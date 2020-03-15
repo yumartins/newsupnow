@@ -7,7 +7,13 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-import { func, object, oneOfType } from 'prop-types';
+import {
+  func,
+  string,
+  object,
+  objectOf,
+  oneOfType,
+} from 'prop-types';
 
 import { Container, Header, Divider } from '../components/Base';
 import Button from '../components/Button';
@@ -41,22 +47,12 @@ const styles = StyleSheet.create({
     marginTop: sm,
     marginLeft: lg,
   },
-
-  firstCardList: {
-    marginRight: xs,
-  },
-
-  generalCardList: {
-    marginHorizontal: xs,
-  },
 });
 
 const {
   title,
   cardList,
   description,
-  firstCardList,
-  generalCardList,
 } = styles;
 
 const Main = ({ navigation }) => {
@@ -68,6 +64,27 @@ const Main = ({ navigation }) => {
   const postSpolight = store.filter((item) => item.spotlight === true);
 
   const lastedVideo = store.filter((item) => item.spotlight !== true);
+
+  /**
+   * Render list from latest video
+   */
+  const listLastedVideo = ({ item }) => (
+    <TouchableHighlight
+      onPress={() => { navigation.navigate('Post', { id: item.id }); }}
+    >
+      <CardPost
+        image={item.image}
+        title={item.title}
+        description={item.description}
+        hour={item.hour}
+      />
+    </TouchableHighlight>
+  );
+
+  /**
+   * Space between list
+   */
+  const listSpacing = () => <View style={{ width: 16 }} />;
 
   return (
     <ScrollView>
@@ -127,24 +144,13 @@ const Main = ({ navigation }) => {
           </Header>
 
           <FlatList
+            horizontal
             style={cardList}
             data={lastedVideo}
             keyExtractor={(post) => `${post.id}`}
-            horizontal
+            ItemSeparatorComponent={listSpacing}
             showsHorizontalScrollIndicator={false}
-            renderItem={(({ item, index }) => (
-              <TouchableHighlight
-                style={index === 0 ? firstCardList : generalCardList}
-                onPress={() => { navigation.navigate('Post', { id: item.id }); }}
-              >
-                <CardPost
-                  image={item.image}
-                  title={item.title}
-                  description={item.description}
-                  hour={item.hour}
-                />
-              </TouchableHighlight>
-            ))}
+            renderItem={listLastedVideo}
           />
         </View>
 
@@ -173,6 +179,11 @@ Main.propTypes = {
   navigation: oneOfType([
     object, func,
   ]).isRequired,
+  item: objectOf(string),
+};
+
+Main.defaultProps = {
+  item: {},
 };
 
 export default Main;

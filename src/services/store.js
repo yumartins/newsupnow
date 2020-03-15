@@ -10,7 +10,7 @@ const posts = [
     description: 'Lorem ipsum its door me goold head look for tree.',
     hour: '5 hours ago',
     spotlight: true,
-    language: ['English'],
+    language: ['English', 'Spanish'],
   },
   {
     id: 2,
