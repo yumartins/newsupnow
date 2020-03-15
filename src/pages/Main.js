@@ -16,6 +16,7 @@ import Container from '../components/Container';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
 import Title from '../components/Title';
+import store from '../services/store';
 import { spacing } from '../styles/styles';
 
 const {
@@ -31,23 +32,35 @@ const styles = StyleSheet.create({
     marginBottom: md,
   },
 
-  spotlight: {
+  title: {
     marginTop: xl + sm,
   },
 
   cardSpotlight: {
     marginTop: sm,
   },
+
+  cardList: {
+    display: 'flex',
+  },
 });
 
 const {
-  spotlight,
+  title,
+  cardList,
   description,
   cardSpotlight,
 } = styles;
 
 const Main = ({ navigation }) => {
   const [search, setSearch] = useState('');
+
+  /**
+   * Filters posts spotlight and latest video
+   */
+  const postSpolight = store.filter((item) => item.spotlight === true);
+
+  const lastedVideo = store.filter((item) => item.spotlight !== true);
 
   return (
     <ScrollView>
@@ -64,44 +77,56 @@ const Main = ({ navigation }) => {
           value={search}
         />
 
-        <View style={spotlight}>
+        <View style={title}>
           <Title
             text="Spotlight"
             size="xs"
             appearance="primary"
           />
 
-          <TouchableHighlight
-            style={cardSpotlight}
-            onPress={() => { navigation.navigate('Post'); }}
-          >
-            <CardSpotlight
-              image={ImagePost}
-              title="Congratulations New York"
-              description="Lorem ipsum its door me goold head look for tree"
-              hour="5 hours ago"
-            />
-          </TouchableHighlight>
+          {postSpolight && postSpolight.slice(0, 1).map((item) => (
+            <TouchableHighlight
+              key={item.id}
+              style={cardSpotlight}
+              onPress={() => { navigation.navigate('Post', { id: item.id }); }}
+            >
+              <CardSpotlight
+                image={item.image}
+                title={item.title}
+                description={item.description}
+                hour={item.hour}
+              />
+            </TouchableHighlight>
+          ))}
         </View>
 
-        <View style={spotlight}>
+        <View style={title}>
           <Title
             text="Latest Video"
             size="xs"
             appearance="primary"
           />
 
-          <TouchableHighlight
-            style={cardSpotlight}
-            onPress={() => { navigation.navigate('Post'); }}
-          >
-            <CardPost
-              image={ImagePost}
-              title="Congratulations New York"
-              description="Lorem ipsum its door me goold head look for tree"
-              hour="5 hours ago"
-            />
-          </TouchableHighlight>
+          <FlatList
+            style={cardList}
+            data={lastedVideo}
+            keyExtractor={(post) => post.id}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            renderItem={(({ item }) => (
+              <TouchableHighlight
+                style={cardSpotlight}
+                onPress={() => { navigation.navigate('Post', { id: item.id }); }}
+              >
+                <CardPost
+                  image={item.image}
+                  title={item.title}
+                  description={item.description}
+                  hour={item.hour}
+                />
+              </TouchableHighlight>
+            ))}
+          />
         </View>
       </Container>
     </ScrollView>
