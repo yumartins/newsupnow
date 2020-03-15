@@ -9,7 +9,7 @@ import {
 
 import { func, object, oneOfType } from 'prop-types';
 
-import { Container, Header } from '../components/Base';
+import { Container, Header, Divider } from '../components/Base';
 import Button from '../components/Button';
 import CardPost from '../components/Cards/Post';
 import CardSpotlight from '../components/Cards/Spotlight';
@@ -23,6 +23,7 @@ const {
   xs,
   sm,
   md,
+  lg,
   xl,
 } = spacing;
 
@@ -36,8 +37,9 @@ const styles = StyleSheet.create({
     marginTop: xl + sm,
   },
 
-  cardSpotlight: {
+  cardList: {
     marginTop: sm,
+    marginLeft: lg,
   },
 
   firstCardList: {
@@ -51,8 +53,8 @@ const styles = StyleSheet.create({
 
 const {
   title,
+  cardList,
   description,
-  cardSpotlight,
   firstCardList,
   generalCardList,
 } = styles;
@@ -70,7 +72,10 @@ const Main = ({ navigation }) => {
   return (
     <ScrollView>
       <Container>
-        <Title text={'Welcome to \nNews upNow'} />
+        <Title
+          style={{ marginTop: spacing.lg }}
+          text={'Welcome to \nNews upNow'}
+        />
         <Description
           style={description}
           text="Here you can follow all the news"
@@ -92,7 +97,7 @@ const Main = ({ navigation }) => {
           {postSpolight && postSpolight.slice(0, 1).map((item) => (
             <TouchableHighlight
               key={item.id}
-              style={cardSpotlight}
+              style={{ marginTop: sm }}
               onPress={() => { navigation.navigate('Post', { id: item.id }); }}
             >
               <CardSpotlight
@@ -104,8 +109,10 @@ const Main = ({ navigation }) => {
             </TouchableHighlight>
           ))}
         </View>
+      </Container>
 
-        <View style={title}>
+      <View style={title}>
+        <View>
           <Header>
             <Title
               text="Latest Video"
@@ -120,9 +127,9 @@ const Main = ({ navigation }) => {
           </Header>
 
           <FlatList
-            style={cardSpotlight}
+            style={cardList}
             data={lastedVideo}
-            keyExtractor={(post) => post.id}
+            keyExtractor={(post) => `${post.id}`}
             horizontal
             showsHorizontalScrollIndicator={false}
             renderItem={(({ item, index }) => (
@@ -140,7 +147,24 @@ const Main = ({ navigation }) => {
             ))}
           />
         </View>
-      </Container>
+
+        <Divider />
+
+        <View>
+          <Header>
+            <Title
+              text="Portuguese"
+              size="xs"
+              appearance="primary"
+            />
+
+            <Button
+              text="View more"
+              route={() => { navigation.navigate('Posts'); }}
+            />
+          </Header>
+        </View>
+      </View>
     </ScrollView>
   );
 };

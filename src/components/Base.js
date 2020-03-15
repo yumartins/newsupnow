@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
-import { spacing } from '../styles/styles';
+import { spacing, color } from '../styles/styles';
 
 export const Container = styled.View`
-  background-color: #FFF;
-  height: 100%;
-  padding: ${spacing.lg}px;
+  padding: 0 ${spacing.lg}px;
 `;
 
 export const Header = styled.View`
@@ -13,6 +11,14 @@ export const Header = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 0 ${spacing.lg}px;
+`;
+
+export const Divider = styled.View`
+  width: 100%;
+  height: 1px;
+  background-color: ${color.light};
+  margin: ${spacing.md}px 0;
 `;
 
 export default Container;

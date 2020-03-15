@@ -32,6 +32,9 @@ const Routes = createAppContainer(
       headerStyle: {
         backgroundColor: 'transparent',
       },
+      cardStyle: {
+        backgroundColor: '#FFF',
+      },
     },
   }),
 );
