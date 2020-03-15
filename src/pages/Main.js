@@ -9,7 +9,6 @@ import {
 
 import { func, object, oneOfType } from 'prop-types';
 
-import ImagePost from '../../assets/images/post.jpg';
 import CardPost from '../components/Cards/Post';
 import CardSpotlight from '../components/Cards/Spotlight';
 import Container from '../components/Container';
@@ -40,16 +39,21 @@ const styles = StyleSheet.create({
     marginTop: sm,
   },
 
-  cardList: {
-    display: 'flex',
+  firstCardList: {
+    marginRight: xs,
+  },
+
+  generalCardList: {
+    marginHorizontal: xs,
   },
 });
 
 const {
   title,
-  cardList,
   description,
   cardSpotlight,
+  firstCardList,
+  generalCardList,
 } = styles;
 
 const Main = ({ navigation }) => {
@@ -108,14 +112,14 @@ const Main = ({ navigation }) => {
           />
 
           <FlatList
-            style={cardList}
+            style={cardSpotlight}
             data={lastedVideo}
             keyExtractor={(post) => post.id}
             horizontal
             showsHorizontalScrollIndicator={false}
-            renderItem={(({ item }) => (
+            renderItem={(({ item, index }) => (
               <TouchableHighlight
-                style={cardSpotlight}
+                style={index === 0 ? firstCardList : generalCardList}
                 onPress={() => { navigation.navigate('Post', { id: item.id }); }}
               >
                 <CardPost
