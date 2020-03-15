@@ -9,9 +9,10 @@ import {
 
 import { func, object, oneOfType } from 'prop-types';
 
+import { Container, Header } from '../components/Base';
+import Button from '../components/Button';
 import CardPost from '../components/Cards/Post';
 import CardSpotlight from '../components/Cards/Spotlight';
-import Container from '../components/Container';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
 import Title from '../components/Title';
@@ -105,11 +106,18 @@ const Main = ({ navigation }) => {
         </View>
 
         <View style={title}>
-          <Title
-            text="Latest Video"
-            size="xs"
-            appearance="primary"
-          />
+          <Header>
+            <Title
+              text="Latest Video"
+              size="xs"
+              appearance="primary"
+            />
+
+            <Button
+              text="View more"
+              route={() => { navigation.navigate('Posts'); }}
+            />
+          </Header>
 
           <FlatList
             style={cardSpotlight}

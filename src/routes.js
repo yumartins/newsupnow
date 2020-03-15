@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Main from './pages/Main';
 import Post from './pages/Post';
+import Posts from './pages/Posts';
 
 const Routes = createAppContainer(
   createStackNavigator({
@@ -10,6 +11,12 @@ const Routes = createAppContainer(
       screen: Main,
       navigationOptions: {
         title: 'Home',
+      },
+    },
+    Posts: {
+      screen: Posts,
+      navigationOptions: {
+        title: 'Posts',
       },
     },
     Post: {
