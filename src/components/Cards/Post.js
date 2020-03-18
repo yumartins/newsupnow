@@ -1,10 +1,10 @@
 import React from 'react';
 
-import he from 'he';
 import { string } from 'prop-types';
 import styled from 'styled-components';
 
 import IconPlay from '../../../assets/icon-play.svg';
+import { decode } from '../../hooks';
 import {
   color,
   spacing,
@@ -18,38 +18,34 @@ const Post = ({
   title,
   image,
   description,
-}) => {
-  const encode = (str) => he.decode(str);
+}) => (
+  <Card>
+    <Container>
+      <ContentImage>
+        <Background
+          source={{
+            uri: image,
+          }}
+        />
+        <Overlay />
+      </ContentImage>
 
-  return (
-    <Card>
-      <Container>
-        <ContentImage>
-          <Background
-            source={{
-              uri: image,
-            }}
-          />
-          <Overlay />
-        </ContentImage>
-
-        <Button>
-          <IconPlay height={14} />
-        </Button>
-      </Container>
-      <Title>
-        {encode(title).substring(0, 46)}
-        {' '}
-        ...
-      </Title>
-      <Text
-        size="xs"
-        text={`${encode(description).substring(3, 84)} ...`}
-      />
-      <Hour>{hour}</Hour>
-    </Card>
-  );
-};
+      <Button>
+        <IconPlay height={14} />
+      </Button>
+    </Container>
+    <Title>
+      {decode(title).substring(0, 46)}
+      {' '}
+      ...
+    </Title>
+    <Text
+      size="xs"
+      text={`${decode(description).substring(3, 84)} ...`}
+    />
+    <Hour>{hour}</Hour>
+  </Card>
+);
 
 const {
   xs,

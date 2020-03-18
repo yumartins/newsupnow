@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { string, number } from 'prop-types';
+import { string } from 'prop-types';
 import styled from 'styled-components';
 
 import IconClock from '../../../assets/icon-clock.svg';

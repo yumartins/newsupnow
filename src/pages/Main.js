@@ -22,9 +22,8 @@ import CardSpotlight from '../components/Cards/Spotlight';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
 import Title from '../components/Title';
-import getDate from '../hooks';
+import { getDate } from '../hooks';
 import api from '../services/api';
-import store from '../services/store';
 import { spacing } from '../styles/styles';
 
 const {

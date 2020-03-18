@@ -1,7 +1,9 @@
+import he from 'he';
+
 /**
  * Make the string a valid date
  */
-const getDate = (str, lang) => {
+export const getDate = (str, lang) => {
   const date = new Date(str);
 
   return date.toLocaleString(lang, {
@@ -11,4 +13,7 @@ const getDate = (str, lang) => {
   });
 };
 
-export default getDate;
+/**
+ * Decode string
+ */
+export const decode = (str) => he.decode(str);
