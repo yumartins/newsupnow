@@ -20,5 +20,3 @@ export const Divider = styled.View`
   background-color: ${color.light};
   margin: ${spacing.md}px 0;
 `;
-
-export default Container;

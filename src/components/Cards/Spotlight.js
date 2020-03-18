@@ -11,14 +11,12 @@ import {
   typography,
   borderRadius,
 } from '../../styles/styles';
-import Description from '../Description';
 import Title from '../Title';
 
 const Spotlight = ({
   hour,
   title,
   image,
-  description,
 }) => (
   <Card>
     <Image>
@@ -34,11 +32,6 @@ const Spotlight = ({
         text={title}
         size="xs"
         appearance="white"
-      />
-      <Text
-        text={description}
-        appearance="white"
-        size="xs"
       />
     </Container>
     <Button>
@@ -94,10 +87,6 @@ const Container = styled.View`
   max-width: 224px;
 `;
 
-const Text = styled(Description)`
-  margin-top: ${xs - 4}px;
-`;
-
 const Button = styled.View`
   background-color: ${color.primary};
   width: ${xl + xs}px;
@@ -141,12 +130,10 @@ Spotlight.propTypes = {
   hour: string,
   title: string.isRequired,
   image: number.isRequired,
-  description: string,
 };
 
 Spotlight.defaultProps = {
   hour: '',
-  description: '',
 };
 
 export default Spotlight;

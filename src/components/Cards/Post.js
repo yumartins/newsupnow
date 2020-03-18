@@ -20,10 +20,10 @@ const Post = ({
 }) => (
   <Card>
     <Container>
-      <Image>
+      <ContentImage>
         <Background source={image} />
         <Overlay />
-      </Image>
+      </ContentImage>
 
       <Button>
         <IconPlay height={14} />
@@ -59,7 +59,7 @@ const Container = styled.View`
   height: 210px;
 `;
 
-const Image = styled.View`
+const ContentImage = styled.View`
   position: absolute;
   width: 100%;
   height: 100%;

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   FlatList,
   StyleSheet,
   ScrollView,
-  TouchableHighlight,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -22,6 +22,7 @@ import CardSpotlight from '../components/Cards/Spotlight';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
 import Title from '../components/Title';
+import api from '../services/api';
 import store from '../services/store';
 import { spacing } from '../styles/styles';
 
@@ -57,11 +58,23 @@ const {
 
 const Main = ({ navigation }) => {
   const [search, setSearch] = useState('');
+  const [post, setPosts] = useState([]);
+
+  useEffect(() => {
+    async function getPosts () {
+      const response = await api.get('/posts?_embed');
+      setPosts(response.data);
+    }
+
+    getPosts();
+  }, []);
 
   /**
    * Filters posts spotlight and latest video
    */
-  const postSpolight = store.filter((item) => item.spotlight === true);
+  const postSpolight = post.filter((item) => item.categories.findIndex((field) => field === 17) !== -1);
+
+  console.log(postSpolight);
 
   const lastedVideo = store.filter((item) => item.spotlight !== true);
 
@@ -69,7 +82,7 @@ const Main = ({ navigation }) => {
    * Render list from latest video
    */
   const listLastedVideo = ({ item }) => (
-    <TouchableHighlight
+    <TouchableOpacity
       onPress={() => { navigation.navigate('Post', { id: item.id }); }}
     >
       <CardPost
@@ -78,7 +91,7 @@ const Main = ({ navigation }) => {
         description={item.description}
         hour={item.hour}
       />
-    </TouchableHighlight>
+    </TouchableOpacity>
   );
 
   /**
@@ -112,18 +125,18 @@ const Main = ({ navigation }) => {
           />
 
           {postSpolight && postSpolight.slice(0, 1).map((item) => (
-            <TouchableHighlight
+            <TouchableOpacity
               key={item.id}
               style={{ marginTop: sm }}
               onPress={() => { navigation.navigate('Post', { id: item.id }); }}
             >
               <CardSpotlight
                 image={item.image}
-                title={item.title}
+                title={item.title.rendered}
                 description={item.description}
                 hour={item.hour}
               />
-            </TouchableHighlight>
+            </TouchableOpacity>
           ))}
         </View>
       </Container>
