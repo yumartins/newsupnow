@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { string, number } from 'prop-types';
+import he from 'he';
+import { string } from 'prop-types';
 import styled from 'styled-components';
 
 import IconPlay from '../../../assets/icon-play.svg';
@@ -17,30 +18,38 @@ const Post = ({
   title,
   image,
   description,
-}) => (
-  <Card>
-    <Container>
-      <ContentImage>
-        <Background
-          source={{
-            uri: image,
-          }}
-        />
-        <Overlay />
-      </ContentImage>
+}) => {
+  const encode = (str) => he.decode(str);
 
-      <Button>
-        <IconPlay height={14} />
-      </Button>
-    </Container>
-    <Title>{title.replace(/(&#(\d*);)/g, "'")}</Title>
-    <Text
-      size="xs"
-      text={description.replace(/((&#(\d*);))/g, "'").substring(3, description.length - 5)}
-    />
-    <Hour>{hour}</Hour>
-  </Card>
-);
+  return (
+    <Card>
+      <Container>
+        <ContentImage>
+          <Background
+            source={{
+              uri: image,
+            }}
+          />
+          <Overlay />
+        </ContentImage>
+
+        <Button>
+          <IconPlay height={14} />
+        </Button>
+      </Container>
+      <Title>
+        {encode(title).substring(0, 46)}
+        {' '}
+        ...
+      </Title>
+      <Text
+        size="xs"
+        text={`${encode(description).substring(3, 84)} ...`}
+      />
+      <Hour>{hour}</Hour>
+    </Card>
+  );
+};
 
 const {
   xs,
@@ -131,7 +140,7 @@ const Button = styled.View`
 Post.propTypes = {
   hour: string,
   title: string.isRequired,
-  image: number.isRequired,
+  image: string.isRequired,
   description: string,
 };
 
