@@ -20,7 +20,11 @@ const Spotlight = ({
 }) => (
   <Card>
     <Image>
-      <Background source={image} />
+      <Background
+        source={{
+          uri: image,
+        }}
+      />
       <Overlay />
     </Image>
     <BoxHours>
@@ -68,7 +72,7 @@ const Overlay = styled.View`
   height: 100%;
   z-index: 2;
   background-color: ${color.black};
-  opacity: .2;
+  opacity: .4;
   border-radius: ${borderRadius.md}px;
 `;
 
@@ -129,7 +133,7 @@ const Hour = styled.Text`
 Spotlight.propTypes = {
   hour: string,
   title: string.isRequired,
-  image: number.isRequired,
+  image: string.isRequired,
 };
 
 Spotlight.defaultProps = {

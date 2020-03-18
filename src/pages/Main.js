@@ -22,6 +22,7 @@ import CardSpotlight from '../components/Cards/Spotlight';
 import Description from '../components/Description';
 import SearchInput from '../components/SearchInput';
 import Title from '../components/Title';
+import getDate from '../hooks';
 import api from '../services/api';
 import store from '../services/store';
 import { spacing } from '../styles/styles';
@@ -72,11 +73,9 @@ const Main = ({ navigation }) => {
   /**
    * Filters posts spotlight and latest video
    */
-  const postSpolight = post.filter((item) => item.categories.findIndex((field) => field === 17) !== -1);
+  const postSpolight = post.filter((item) => item.categories.find((field) => field === 17));
 
-  console.log(postSpolight);
-
-  const lastedVideo = store.filter((item) => item.spotlight !== true);
+  const lastedVideo = post.filter((item) => item.categories.find((field) => field !== 17));
 
   /**
    * Render list from latest video
@@ -86,10 +85,10 @@ const Main = ({ navigation }) => {
       onPress={() => { navigation.navigate('Post', { id: item.id }); }}
     >
       <CardPost
-        image={item.image}
-        title={item.title}
-        description={item.description}
-        hour={item.hour}
+        image={item._embedded['wp:featuredmedia']['0'].source_url}
+        title={item.title.rendered}
+        description={item.excerpt.rendered}
+        hour={getDate(item.date, 'en-US')}
       />
     </TouchableOpacity>
   );
@@ -131,10 +130,9 @@ const Main = ({ navigation }) => {
               onPress={() => { navigation.navigate('Post', { id: item.id }); }}
             >
               <CardSpotlight
-                image={item.image}
+                image={item._embedded['wp:featuredmedia']['0'].source_url}
                 title={item.title.rendered}
-                description={item.description}
-                hour={item.hour}
+                hour={getDate(item.date, 'en-US')}
               />
             </TouchableOpacity>
           ))}
@@ -159,8 +157,8 @@ const Main = ({ navigation }) => {
           <FlatList
             horizontal
             style={cardList}
-            data={lastedVideo}
-            keyExtractor={(post) => `${post.id}`}
+            data={lastedVideo.slice(0, 5)}
+            keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={listSpacing}
             showsHorizontalScrollIndicator={false}
             renderItem={listLastedVideo}

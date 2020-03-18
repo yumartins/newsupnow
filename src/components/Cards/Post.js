@@ -21,7 +21,11 @@ const Post = ({
   <Card>
     <Container>
       <ContentImage>
-        <Background source={image} />
+        <Background
+          source={{
+            uri: image,
+          }}
+        />
         <Overlay />
       </ContentImage>
 
@@ -29,10 +33,10 @@ const Post = ({
         <IconPlay height={14} />
       </Button>
     </Container>
-    <Title>{title}</Title>
+    <Title>{title.replace(/(&#(\d*);)/g, "'")}</Title>
     <Text
       size="xs"
-      text={description}
+      text={description.replace(/((&#(\d*);))/g, "'").substring(3, description.length - 5)}
     />
     <Hour>{hour}</Hour>
   </Card>
@@ -71,7 +75,7 @@ const Overlay = styled.View`
   height: 100%;
   z-index: 2;
   background-color: ${color.black};
-  opacity: .2;
+  opacity: .4;
   border-radius: ${borderRadius.md}px;
 `;
 
