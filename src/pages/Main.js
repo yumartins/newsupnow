@@ -97,6 +97,40 @@ const Main = ({ navigation }) => {
    */
   const listSpacing = () => <View style={{ width: 16 }} />;
 
+
+  const postOfCategories = (category, language) => {
+    const filter = post.filter((item) => item.categories.find((field) => field === category));
+
+    console.log(filter);
+
+    return (
+      <View>
+        <Header>
+          <Title
+            text={language}
+            size="xs"
+            appearance="primary"
+          />
+
+          <Button
+            text="View more"
+            route={() => { navigation.navigate('Posts'); }}
+          />
+        </Header>
+
+        <FlatList
+          horizontal
+          style={cardList}
+          data={filter.slice(0, 5)}
+          keyExtractor={(item) => `${item.id}`}
+          ItemSeparatorComponent={listSpacing}
+          showsHorizontalScrollIndicator={false}
+          renderItem={listLastedVideo}
+        />
+      </View>
+    );
+  };
+
   return (
     <ScrollView>
       <Container>
@@ -166,20 +200,7 @@ const Main = ({ navigation }) => {
 
         <Divider />
 
-        <View>
-          <Header>
-            <Title
-              text="Portuguese"
-              size="xs"
-              appearance="primary"
-            />
-
-            <Button
-              text="View more"
-              route={() => { navigation.navigate('Posts'); }}
-            />
-          </Header>
-        </View>
+        {postOfCategories(20, 'Portuguese')}
       </View>
     </ScrollView>
   );
