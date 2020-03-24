@@ -98,6 +98,13 @@ const Main = ({ navigation }) => {
   const listSpacing = () => <View style={{ width: 16 }} />;
 
 
+  /**
+   *
+   * @param {Number} category => Select posts with id categories
+   * @param {String} language => String for select the title
+   *
+   * Filter posts for categories and apply the title the head
+   */
   const postOfCategories = (category, language) => {
     const filter = post.filter((item) => item.categories.find((field) => field === category));
 
@@ -207,6 +214,13 @@ const Main = ({ navigation }) => {
         <Divider />
 
         {postOfCategories(20, 'Portuguese')}
+
+        <Button
+          style={{ margin: lg }}
+          size="lg"
+          text="View more"
+          route={() => { navigation.navigate('Posts'); }}
+        />
 
       </View>
     </ScrollView>
