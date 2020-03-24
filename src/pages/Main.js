@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    marginTop: xl + sm,
+    marginTop: xl + md,
   },
 
   cardList: {
@@ -62,7 +62,7 @@ const Main = ({ navigation }) => {
 
   useEffect(() => {
     async function getPosts () {
-      const response = await api.get('/posts?_embed');
+      const response = await api.get('/posts?_embed&per_page=100');
       setPosts(response.data);
     }
 
@@ -79,7 +79,7 @@ const Main = ({ navigation }) => {
   /**
    * Render list from latest video
    */
-  const listLastedVideo = ({ item }) => (
+  const listVideo = ({ item }) => (
     <TouchableOpacity
       onPress={() => { navigation.navigate('Post', { id: item.id }); }}
     >
@@ -100,8 +100,6 @@ const Main = ({ navigation }) => {
 
   const postOfCategories = (category, language) => {
     const filter = post.filter((item) => item.categories.find((field) => field === category));
-
-    console.log(filter);
 
     return (
       <View>
@@ -125,7 +123,7 @@ const Main = ({ navigation }) => {
           keyExtractor={(item) => `${item.id}`}
           ItemSeparatorComponent={listSpacing}
           showsHorizontalScrollIndicator={false}
-          renderItem={listLastedVideo}
+          renderItem={listVideo}
         />
       </View>
     );
@@ -194,13 +192,22 @@ const Main = ({ navigation }) => {
             keyExtractor={(item) => `${item.id}`}
             ItemSeparatorComponent={listSpacing}
             showsHorizontalScrollIndicator={false}
-            renderItem={listLastedVideo}
+            renderItem={listVideo}
           />
         </View>
 
         <Divider />
 
+        {postOfCategories(17, 'English')}
+
+        <Divider />
+
+        {postOfCategories(22, 'Spanish')}
+
+        <Divider />
+
         {postOfCategories(20, 'Portuguese')}
+
       </View>
     </ScrollView>
   );

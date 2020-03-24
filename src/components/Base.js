@@ -18,5 +18,5 @@ export const Divider = styled.View`
   width: 100%;
   height: 1px;
   background-color: ${color.light};
-  margin: ${spacing.md}px 0;
+  margin: ${spacing.xl}px 0;
 `;
