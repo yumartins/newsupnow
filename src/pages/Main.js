@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import {
   View,
   FlatList,
-  StyleSheet,
   ScrollView,
+  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 
@@ -67,7 +67,7 @@ const Main = ({ navigation }) => {
     }
 
     getPosts();
-  }, []);
+  }, [post]);
 
   /**
    * Filters posts spotlight and latest video
@@ -81,10 +81,10 @@ const Main = ({ navigation }) => {
    */
   const listVideo = ({ item }) => (
     <TouchableOpacity
-      onPress={() => { navigation.navigate('Post', { id: item.id }); }}
+      onPress={() => { navigation.navigate('Post', { id: item }); }}
     >
       <CardPost
-        image={item._embedded['wp:featuredmedia']['0'].source_url}
+        image={item._embedded['wp:featuredmedia']['0'].source_url} // eslint-disable-line
         title={item.title.rendered}
         description={item.excerpt.rendered}
         hour={getDate(item.date, 'en-US')}
@@ -96,7 +96,6 @@ const Main = ({ navigation }) => {
    * Space between list
    */
   const listSpacing = () => <View style={{ width: 16 }} />;
-
 
   /**
    *
@@ -136,6 +135,24 @@ const Main = ({ navigation }) => {
     );
   };
 
+  /**
+   * Introducing all programs
+   */
+  const programs = [
+    {
+      id: 17,
+      title: 'English',
+    },
+    {
+      id: 22,
+      title: 'Spanish',
+    },
+    {
+      id: 20,
+      title: 'Portuguese',
+    },
+  ];
+
   return (
     <ScrollView>
       <Container>
@@ -165,10 +182,10 @@ const Main = ({ navigation }) => {
             <TouchableOpacity
               key={item.id}
               style={{ marginTop: sm }}
-              onPress={() => { navigation.navigate('Post', { id: item.id }); }}
+              onPress={() => { navigation.navigate('Post', { id: item }); }}
             >
               <CardSpotlight
-                image={item._embedded['wp:featuredmedia']['0'].source_url}
+                image={item._embedded['wp:featuredmedia']['0'].source_url} // eslint-disable-line
                 title={item.title.rendered}
                 hour={getDate(item.date, 'en-US')}
               />
@@ -203,17 +220,12 @@ const Main = ({ navigation }) => {
           />
         </View>
 
-        <Divider />
-
-        {postOfCategories(17, 'English')}
-
-        <Divider />
-
-        {postOfCategories(22, 'Spanish')}
-
-        <Divider />
-
-        {postOfCategories(20, 'Portuguese')}
+        {programs.map((program) => (
+          <View key={program.id}>
+            <Divider />
+            {postOfCategories(program.id, program.title)}
+          </View>
+        ))}
 
         <Button
           style={{ margin: lg }}
